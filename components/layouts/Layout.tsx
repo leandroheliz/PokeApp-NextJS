@@ -9,7 +9,6 @@ type Props = {
 };
 
 const origin = (typeof window === 'undefined')? '' : window.location.origin;
-
 export const Layout: React.FC<Props> = ({ children, title }) => {
 
   return (
