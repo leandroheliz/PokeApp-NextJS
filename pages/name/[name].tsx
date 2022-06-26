@@ -5,14 +5,16 @@ import {
   Container,
   Grid,
   Image,
+  Link,
   Spacer,
-  Text,
-} from "@nextui-org/react";
+  Text
+}from "@nextui-org/react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Pokemon, PokemonListResponse } from "../../interfaces";
 import { getPokemon, localFavoritos } from "../../utils";
 
 import { Layout } from "../../components/layouts";
+import NextLink from 'next/link';
 import { Row } from "@nextui-org/react";
 import confetti from "canvas-confetti";
 import { pokeApi } from "../../api";
@@ -47,8 +49,16 @@ const PokemonName: NextPage<Props> = ({ pokemon }) => {
     <Layout title={pokemon.name}>
       <Grid.Container css={{ marginTop: "5px" }} gap={2} justify="center">
         <Grid xs={12} sm={6}>
-          <Card isPressable isHoverable css={{ padding: "30px" }}>
+        <Card isPressable isHoverable css={{ padding: "10px", bg:'none' }}>
             <Card.Body>
+            <NextLink href={"/"} passHref>
+                      <Link>
+                        <Button color="gradient" ghost>
+                          Volver Atrás
+                        </Button>
+                      </Link>
+                    </NextLink>
+                    <Spacer />
               <Card.Image
                 src={
                   pokemon.sprites.other?.dream_world.front_default ||
@@ -58,6 +68,18 @@ const PokemonName: NextPage<Props> = ({ pokemon }) => {
                 width="100%"
                 height={200}
               />
+                 <Spacer />
+                 <Container display="flex" justify="center">
+                     <Button
+                      color="gradient"
+                      ghost={!isfavorito}
+                      onClick={toggleFavorite}>
+                    
+                      {isfavorito
+                        ? "Quitar de Favoritos"
+                        : "Agregar a Favoritos"}
+                    </Button>
+                        </Container>
             </Card.Body>
           </Card>
         </Grid>
@@ -70,32 +92,17 @@ const PokemonName: NextPage<Props> = ({ pokemon }) => {
               <Container display="flex" justify="center">
                 <Row>
                   <Col>
-                    <Text h1>#{pokemon.id}</Text>
-                    <Text h1 transform="capitalize">
-                      {pokemon.name}
+                  <Container display="flex" alignItems="center" justify="center">
+                   
+                    <Text h1 transform="uppercase">
+                    #{pokemon.id} - {pokemon.name}
                     </Text>
-                  </Col>
-                  <Col>
-                    <Button color="gradient" ghost>
-                      Volver Atrás
-                    </Button>
-                  </Col>
-                  <Col>
-                    <Button
-                      color="gradient"
-                      ghost={!isfavorito}
-                      onClick={toggleFavorite}
-                    >
-                      {isfavorito
-                        ? "Quitar de Favoritos"
-                        : "Agregar a Favoritos"}
-                    </Button>
+                  </Container>
                   </Col>
                 </Row>
               </Container>
             </Card.Header>
             <Card.Body>
-              <Text size={30}>Sprites:</Text>
               <Container direction="row" display="flex" gap={0}>
                 <Image
                   src={pokemon.sprites.front_default}

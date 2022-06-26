@@ -90,8 +90,11 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
               <Container display="flex" justify="center">
                 <Row>
                   <Col>
-                    <Text h1>#{pokemon.id}</Text>
-                    <Text h1 transform="capitalize">{pokemon.name}</Text>
+                  <Container display="flex" alignItems="center" justify="center">
+                   <Text h1 transform="uppercase">
+                   #{pokemon.id} - {pokemon.name}
+                   </Text>
+                 </Container>
                   </Col>
                 </Row>
               </Container>
