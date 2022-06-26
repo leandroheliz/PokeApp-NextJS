@@ -1,1 +1,5 @@
 export * from './Navbar'
+export * from './NoFavoritos'
+export * from './CardFavoritos'
+export * from './PokemonFavorito'
+export * from './CardHome'

@@ -1,19 +1,20 @@
 import * as React from "react";
-import { SmallPokemon } from "../../interfaces";
+
 import { Button, Card, Col, Grid, Row, Text } from "@nextui-org/react";
+
+import { SmallPokemon } from "../../interfaces";
 import { useRouter } from "next/router";
 
 interface Props {
-  pokemon: SmallPokemon
+  pokemon: SmallPokemon;
 }
 
 export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
-
   const router = useRouter();
 
   const pokeClick = () => {
-      router.push(`/pokemon/${pokemon.id}`);
-  }
+    router.push(`/name/${pokemon.name}`);
+  };
 
   return (
     <Grid xs={12} sm={6} md={4} xl={2} key={pokemon.id}>
@@ -21,12 +22,11 @@ export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
         css={{ w: "100%", h: "400px", borderRadius: "0px" }}
         isPressable
         isHoverable
-        variant="bordered">
-        <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
+        variant="bordered"
+      >
+        <Card.Header css={{ position: "absolute", zIndex: 1, top: 1 }}>
           <Col>
-            <Text size={20} weight="bold" transform="uppercase" color="#9E9E9E">
-              #{pokemon.id}
-            </Text>
+            <Text className="idPokemon">#{pokemon.id}</Text>
             <Text h3 color="white">
               {pokemon.name}
             </Text>
@@ -53,14 +53,11 @@ export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
           <Row>
             <Col>
               <Row>
-                  <Text css={{marginTop:'5px', margin:'10px'}}>
-                    #{pokemon.id}
-                  </Text>
                 <Col span={3}>
                   <Card.Image
                     src={pokemon.img}
-                    height={40}
-                    width={40}
+                    height={50}
+                    width={50}
                     alt={pokemon.name}
                   />
                 </Col>
@@ -68,15 +65,20 @@ export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
             </Col>
             <Col>
               <Row justify="flex-end">
-                <Button flat auto rounded
-                  css={{ color: "#94f9f0", bg: "#94f9f026" }}>
+                <Button
+                  flat
+                  auto
+                  rounded
+                  className='btn-pokemon'
+                >
                   <Text
                     css={{ color: "inherit" }}
                     size={12}
                     weight="bold"
                     transform="uppercase"
-                     onClick={pokeClick}
-                    >
+                    onClick={pokeClick}
+                    b
+                  >
                     Ver Pokemon
                   </Text>
                 </Button>
