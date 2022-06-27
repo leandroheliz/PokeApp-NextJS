@@ -1,8 +1,9 @@
+import { Container, Grid, Spacer } from '@nextui-org/react';
 import type { GetStaticProps, NextPage } from "next";
 import { PokemonListResponse, SmallPokemon } from "../interfaces";
 
-import { Grid } from "@nextui-org/react";
 import { Layout } from "../components/layouts";
+import { Pagination } from "@nextui-org/react";
 import { PokemonCard } from "../components/pokemon";
 import { pokeApi } from "../api";
 
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const Home: NextPage<Props> = ({ pokemons }) => {
+
   return (
     <Layout title="Pokemon App">
       <Grid.Container gap={2} justify="center">
@@ -18,6 +20,11 @@ const Home: NextPage<Props> = ({ pokemons }) => {
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
       </Grid.Container>
+      <Spacer/>
+      <Container display="flex" justify="center">
+ <Pagination total={20} initialPage={1} />
+      </Container>
+      <Spacer/>
     </Layout>
   );
 };

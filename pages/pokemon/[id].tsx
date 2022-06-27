@@ -84,7 +84,11 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
         </Grid>
         <Spacer />
         <Grid xs={12} sm={6}>
-          <Card>
+          <Card
+             isPressable
+        isHoverable
+        variant="bordered"
+          >
             <Card.Header
               css={{ display: "flex", justifyContent: "space-around" }}>
               <Container display="flex" justify="center">
@@ -140,7 +144,8 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
   return {
     paths: pokes.map((id) => ({ params: { id } })),
-    fallback: false,
+    // fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -148,10 +153,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   
   const { id } = params as { id: string }
 
+  const pokemon = await getPokemon(id);
+
+  if (!pokemon) {
+    return{
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
   return {
     props: {
-      pokemon: await getPokemon(id)
-    }
+      pokemon
+    },
+    revalidate: 86400,
   }
 }
 

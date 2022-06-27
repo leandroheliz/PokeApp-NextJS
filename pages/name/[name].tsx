@@ -13,6 +13,7 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Pokemon, PokemonListResponse } from "../../interfaces";
 import { getPokemon, localFavoritos } from "../../utils";
 
+import { Heart2 } from "react-iconly";
 import { Layout } from "../../components/layouts";
 import NextLink from 'next/link';
 import { Row } from "@nextui-org/react";
@@ -49,7 +50,10 @@ const PokemonName: NextPage<Props> = ({ pokemon }) => {
     <Layout title={pokemon.name}>
       <Grid.Container css={{ marginTop: "5px" }} gap={2} justify="center">
         <Grid xs={12} sm={6}>
-        <Card isPressable isHoverable css={{ padding: "10px", bg:'none' }}>
+        <Card
+           isPressable
+           isHoverable
+         css={{ padding: "10px", bg:'none' }}>
             <Card.Body>
             <NextLink href={"/"} passHref>
                       <Link>
@@ -77,7 +81,7 @@ const PokemonName: NextPage<Props> = ({ pokemon }) => {
                     
                       {isfavorito
                         ? "Quitar de Favoritos"
-                        : "Agregar a Favoritos"}
+                        : <Heart2 set="bold" primaryColor="red"/>}
                     </Button>
                         </Container>
             </Card.Body>
@@ -146,7 +150,7 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
     paths: pokemonName.map((name) => ({
       params: { name },
     })),
-    fallback: false,
+    fallback: "blocking",
   };
 };
 
@@ -154,9 +158,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   
   const { name } = params as { name: string };
 
+  const pokemon = await getPokemon(name);
+
+  if (!pokemon) {
+    return{
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
   return {
     props: {
-      pokemon: await getPokemon(name),
+      pokemon
     },
   };
 };

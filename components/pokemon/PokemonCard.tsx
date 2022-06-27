@@ -24,22 +24,21 @@ export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
         isHoverable
         variant="bordered"
       >
-        <Card.Header css={{ position: "absolute", zIndex: 1, top: 1 }}>
-          <Col>
-            <Text className="idPokemon">#{pokemon.id}</Text>
-            <Text h3 color="white">
-              {pokemon.name}
-            </Text>
-          </Col>
+       <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
+       <Col>
+        <Text size={12} weight="bold" transform="uppercase" color="#ffffffAA" className="idPokemon">
+          #{pokemon.id} - {pokemon.name}
+        </Text>
+      </Col>
         </Card.Header>
-        <Card.Body css={{ p: 0 }}>
+        <Card.Body css={{ p:0 }}>
           <Card.Image
             src={pokemon.img}
             objectFit="cover"
             width="100%"
             height="100%"
             alt={pokemon.name}
-          />
+            />
         </Card.Body>
         <Card.Footer
           isBlurred
@@ -77,7 +76,6 @@ export const PokemonCard: React.FC<Props> = ({ pokemon }) => {
                     weight="bold"
                     transform="uppercase"
                     onClick={pokeClick}
-                    b
                   >
                     Ver Pokemon
                   </Text>

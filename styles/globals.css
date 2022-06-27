@@ -33,7 +33,7 @@ a {
   color: #000;
   background: #fff;
   border-radius: 0px;
-  width: 50px;
+  width: 100%;
   heigth: 30px;
   display: flex;
   justify-content: center;
@@ -50,4 +50,8 @@ a {
 .btn-pokemon:hover{
   color: #000;
   background: #fff;
+}
+
+.btn-delete{
+  width: 20px;
 }

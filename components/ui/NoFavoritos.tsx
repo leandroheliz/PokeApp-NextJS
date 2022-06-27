@@ -1,4 +1,6 @@
-import { Container, Image, Text } from "@nextui-org/react";
+import { Button, Container, Image, Link, Spacer, Text } from "@nextui-org/react";
+
+import NextLink from "next/link";
 
 export const NoFavoritos = () => {
   return (
@@ -12,13 +14,21 @@ export const NoFavoritos = () => {
         alignSelf: "center",
       }}
     >
-      <Text h1>Todavia no Agregaste Favoritos.</Text>
+      <Spacer/>
+      <Text h1 css={{mt:'50px'}}>Todavia no Agregaste Favoritos.</Text>
       <Image
         src={"/images/pokeball.png"}
         alt="Camelia Blanco Y Mas"
         width={200}
         height={200}
       />
+      <NextLink href={'/'} passHref>
+        <Link>
+        <Button auto color="secondary" rounded flat>
+        Volver al Inicio
+        </Button>
+        </Link>
+      </NextLink>
     </Container>
   );
 };

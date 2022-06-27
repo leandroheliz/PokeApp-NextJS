@@ -10,10 +10,10 @@ type Props = {
 export const CardFavoritos: React.FC<Props> = ({ pokemons }) => {
 
   return (
-    <Grid.Container gap={2} direction="row" justify="flex-start">
+    <Grid.Container gap={1} direction="row" justify="center">
       {pokemons.map((id) => (
         <PokemonFavorito pokemonId={id} key={id} />
-      ))}
+        ))}
     </Grid.Container>
   );
 };

@@ -10,35 +10,33 @@ export const Navbar = () => {
          <Spacer />
       <NextLink href={"/"} passHref>
         <Link>
-        <Button shadow auto color="warning">
-          <Text h2>
+        <Button auto color="warning">
+          <Text h2 color='black'>
             P
           </Text>
-          <Text color="grey" h3>
+          <Text color="black" h3>
             okemon
           </Text>
           <Spacer />
-          <Text h4>
+          <Text h2 color='black'>
             A
           </Text>
-          <Text color="grey" h5>
+          <Text color="black" h3>
             pp
           </Text>
         </Button>
-          <Spacer />
-          <Image
-      src='/images/pokemonBall.png'
-      alt='Favicon Pokeball'
-      width={50} height={50}      
-      />
         </Link>
       </NextLink>
       <Spacer css={{ flex: 1 }} />
       <NextLink href={"/favoritos"} passHref>
         <Link>
-        <Button color="error" auto shadow>
-            Mis Favoritos
+        <Container>
+        <Button color="error" auto shadow
+        css={{height: '50px'}}
+        > Mis Favoritos
+      <Image src='/images/favoritos.png' width={50} height={50} alt='Favicon Favoritos'/>
         </Button>
+      </Container>
         </Link>
       </NextLink>
       </Container>

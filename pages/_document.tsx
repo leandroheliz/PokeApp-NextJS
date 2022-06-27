@@ -17,6 +17,7 @@ class MyDocument extends Document {
       <Html lang="es">
         <Head>
           {CssBaseline.flush()}
+          <link rel="icon" href="/favicon/favicon.ico" />
           </Head>
         <body>
           <Main />
